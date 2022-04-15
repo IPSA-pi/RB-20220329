@@ -1,0 +1,105 @@
+* {
+  font-family: "Space Mono", monospace;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* overflow: hidden; */
+}
+
+::selection {
+  background-color: white;
+  color: black;
+}
+
+#jergaBinariaRelok {
+  height: 100vh;
+}
+
+.jergaBinariaRelok {
+  display: block;
+  margin: auto;
+  margin-top: 7vh;
+  height: 360px;
+  /* filter: blur(25px); */
+}
+
+.fila {
+  display: flex;
+  flex-direction: row;
+}
+
+.celda {
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  line-height: 40px;
+  font-size: 2rem;
+}
+
+.cero {
+  color: black;
+  background-color: white;
+}
+
+.uno {
+  color: white;
+  background-color: black;
+}
+
+.tiempo {
+  display: block;
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 2rem;
+  color: #000000;
+  /* text-shadow: 0 0 10px black; */
+}
+
+.ftr {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#ngu {
+  height: 100%;
+}
+
+#logo {
+  width: 15%;
+  margin: auto;
+}
+
+@media (orientation: landscape) {
+  .jergaBinariaRelok {
+    margin-top: 2rem;
+    width: 390px;
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fila {
+    display: block;
+  }
+
+  .celda {
+    width: 70px;
+    height: 70px;
+  }
+
+  #ngu {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  #logo {
+    width: 15%;
+    margin: auto;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

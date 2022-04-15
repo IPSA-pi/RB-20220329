@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>efectotv</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+        <style>
+            * {
+                font-family: 'Space Mono', monospace;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                /* overflow: hidden; */
+            }
+            ::selection {
+                background-color: white;
+                color: black;
+            }
+            .main {
+                position: relative;
+                background-size: cover;
+            }
+            #jergaBinariaRelok {
+                padding-top: 2rem;
+                height: 100vh;
+            }
+            .jergaBinariaRelok {
+                width: 240px;
+                margin: auto;
+                margin-top: 7vh;
+                height: 360px;
+                /* filter: blur(25px); */
+            }
+            .fila{
+                display: flex;
+                flex-direction: row;
+            }
+            .celda {
+                text-align: center;
+                width: 60px;
+                height: 60px;
+                line-height: 40px;
+                font-size: 2rem;        
+            }
+            .cero {
+                color: black;
+                background-color: rgb(255,255,255,1);    
+            }
+            .uno {
+                color: white;
+                background-color: black;
+            }  
+            .tiempo {
+                margin-top: 5rem;
+                text-align: center;
+                font-size: 2rem;
+                color: #000000;
+                /* text-shadow: 0 0 10px black; */
+            }
+            .description {
+                padding: 1rem;
+                /* border-top: 4px solid black; */
+                width: 80%;
+                margin: auto;
+                background-color: white;
+                text-align: justify;
+            }
+            img.bg {
+                position: absolute;
+            }
+            @media (orientation: landscape) {
+                .jergaBinariaRelok {
+                    margin-top:2rem;
+                    width: 390px;
+                    display: flex;
+                    height: auto;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .fila {
+                    display: block;
+                }
+                .celda {
+                    width: 70px;
+                    height: 70px;
+                }
+            }        
+        </style>
+        <!-- Google -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XE4CBFW5JH"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XE4CBFW5JH');
+        </script>
+
+        <script>     
+            setInterval(jergaBinariaRelok, 1000);
+            function jergaBinariaRelok() {  
+
+                let time = new Date();
+
+                let year = time.getFullYear().toString();
+                let month = time.getMonth() + 1;
+                let day = time.getDate();
+                let hour = time.getHours().toString();
+                let min = time.getMinutes().toString();
+                let sec = time.getSeconds().toString();
+                
+                month = month < 10 ? "0" + month : month;
+                day = day < 10 ? "0" + day : day;
+                hour = hour < 10 ? "0" + hour : hour;
+                min = min < 10 ? "0" + min : min;
+                sec = sec < 10 ? "0" + sec : sec;
+                
+                let currentTime = hour + min + sec;
+                
+                let html = `<div class="jergaBinariaRelok">`;
+                
+                let hiloInput = currentTime.toString().split("");
+                let hiloB = hiloInput.map((char) => char.charCodeAt(0).toString(2).slice(2)); 
+                
+                // let hilo4B = hiloB.map((hilo) => hilo.slice(2));   
+
+                for (let hilo of hiloB) {
+                        let celda = hilo.split("").map((char) => char == 0  
+                                ? char = `<div class="celda cero"></div>` 
+                                : char = `<div class="celda uno"></div>`);
+                        // celda[0] = `<div class="celda cero">${hiloInput[0]}</div>`;
+                        html = html + `<div class="fila">${celda.join("")}</div>`;
+                }
+                
+            html = html + `</div>`;
+            html += `<p class="tiempo">${currentTime}</p>`;
+            document.getElementById("jergaBinariaRelok").innerHTML = html;
+        }
+
+               
+        </script>
+    </head> 
+    <body>
+        <div class="main">
+            <div id="jergaBinariaRelok"></div>  
+            <div class="bg">
+                <!-- <img src="https://zoom-eco.net/wp-content/uploads/2020/03/IMG-20200225-WA0006.jpg" alt="mining"> -->
+            </div>
+        </div>
+    </body>
+</html>
